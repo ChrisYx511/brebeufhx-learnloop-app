@@ -14,11 +14,7 @@ import os
 
 Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-<<<<<<< HEAD
 Settings.llm = Ollama(model="llama3.2:1b", request_timeout=10.0)
-=======
-Settings.llm = Ollama(model="qwen2:0.5b", request_timeout=10.0)
->>>>>>> 8d25c9654443d0893475e541c1f0ec2a5ac149d2
 
 app = FastAPI()
 
@@ -39,13 +35,8 @@ def send(doc:Document):
     with open('docs/textbook.txt', 'w') as f:
         f.write(doc.file)
     
-<<<<<<< HEAD
     # Run inference with the LLM
     response = ollama.chat(model="llama3.2:1b",
-=======
-    # Run inference with the LLaMA model
-    response = ollama.chat(model="qwen2:0.5b",
->>>>>>> 8d25c9654443d0893475e541c1f0ec2a5ac149d2
                    messages=[{"role": "user", "content": f"Given the context: {doc.file[:500]}, lift up the most important topic and use 3 words to describe it."}])
     
     topics = [response.message.content]
